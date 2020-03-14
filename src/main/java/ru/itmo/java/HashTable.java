@@ -68,8 +68,8 @@ public class HashTable {
         while (table[ind] != null && !table[ind].key.equals(key)) {
             ind = nextInd(ind);
         }
-        Entry old_value = table[ind];
-        if (old_value == null)
+        Entry oldValue = table[ind];
+        if (oldValue == null)
             return null;
         table[ind] = null;
         int i = nextInd(ind);
@@ -84,7 +84,7 @@ public class HashTable {
             i = nextInd(i);
         }
         size--;
-        return old_value.value;
+        return oldValue.value;
     }
 
     int size() {
