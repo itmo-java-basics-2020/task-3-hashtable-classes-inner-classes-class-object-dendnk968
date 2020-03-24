@@ -22,39 +22,7 @@ public class HashTableTest {
         controlInstance = new HashMap<>();
     }
 
-    @Test(timeout = 15000)
-    public void InfinityLoop(){
-        HashTable hashTable = new HashTable(10);
-        for (int i = 0; i < 1000000; i++){
-            Int in = new Int(i);
-            hashTable.put(in, in);
-            hashTable.remove(in);
-        }
-        Int in = new Int(1000000);
 
-        hashTable.get(in);
-    }
-
-    private class Int {
-        private int num;
-        Int(int num){
-            this.num = num;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Int anInt = (Int) o;
-            return num == anInt.num;
-        }
-
-        @Override
-        public int hashCode() {
-            return num;
-        }
-    }
-    
     @Test
     public void putMostly_fewKeys() {
         int numberOfKeys = 100;
@@ -69,9 +37,9 @@ public class HashTableTest {
     }
 
     @Test(timeout = 15000)
-    public void InfinityLoop(){
+    public void InfinityLoop() {
         HashTable hashTable = new HashTable(10);
-        for (int i = 0; i < 1000000; i++){
+        for (int i = 0; i < 1000000; i++) {
             Int in = new Int(i);
             hashTable.put(in, in);
             hashTable.remove(in);
@@ -83,7 +51,8 @@ public class HashTableTest {
 
     private class Int {
         private int num;
-        Int(int num){
+
+        Int(int num) {
             this.num = num;
         }
 
