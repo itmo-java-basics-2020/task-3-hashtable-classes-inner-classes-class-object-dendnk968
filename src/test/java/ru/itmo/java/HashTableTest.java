@@ -4,10 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -36,6 +33,39 @@ public class HashTableTest {
                 defaultIntValuesSupplier,
                 NUMBER_OF_INVOCATIONS
         );
+    }
+
+    @Test(timeout = 15000)
+    public void InfinityLoop(){
+        HashTable hashTable = new HashTable(10);
+        for (int i = 0; i < 1000000; i++){
+            Int in = new Int(i);
+            hashTable.put(in, in);
+            hashTable.remove(in);
+        }
+        Int in = new Int(1000000);
+
+        hashTable.get(in);
+    }
+
+    private class Int {
+        private int num;
+        Int(int num){
+            this.num = num;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Int anInt = (Int) o;
+            return num == anInt.num;
+        }
+
+        @Override
+        public int hashCode() {
+            return num;
+        }
     }
 
     @Test
